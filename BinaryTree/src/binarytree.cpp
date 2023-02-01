@@ -9,6 +9,7 @@ using namespace std;
 template<typename T>
 BinaryTree<T>::BinaryTree(){
     root = NULL;
+    temp = NULL;
 }
 
 template<typename T>
@@ -63,6 +64,53 @@ void BinaryTree<T>::insert(Node<T>* node, int data){
             insert(node->right, data);
         }
     }
+}
+
+template<typename T>
+bool BinaryTree<T>::isBalanced(){
+    if (root == NULL) return true;
+    if (abs(getHeightOfNode(root->left) - getHeightOfNode(root->right)) <= 1 &&
+        isBalanced(root->left) && isBalanced(root->right)) return true;
+    return false;
+}
+
+template<typename T>
+bool BinaryTree<T>::isBalanced(Node<T>* node){
+    if (node == NULL) return true;
+    if (abs(getHeightOfNode(node->left) - getHeightOfNode(node->right)) <= 1 &&
+        isBalanced(node->left) && isBalanced(node->right)) return true;
+    return false;
+}
+
+template<typename T>
+int BinaryTree<T>::getHeight(){
+    return getHeightOfNode(root);
+}
+
+template<typename T>
+int BinaryTree<T>::getHeightOfNode(Node<T>* node){
+    if (node == NULL) return 0;
+    return max(getHeightOfNode(node -> left), getHeightOfNode(node -> right)) + 1;
+}
+
+template<typename T>
+void BinaryTree<T>::invert(){
+    if (root == NULL) return;
+    temp = root -> left;
+    root -> left = root -> right;
+    root -> right = temp;
+    invert(root->left);
+    invert(root->right);
+}
+
+template<typename T>
+void BinaryTree<T>::invert(Node<T>* node){
+    if (node == NULL) return;
+    temp = node -> left;
+    node -> left = node -> right;
+    node -> right = temp;
+    invert(node->left);
+    invert(node->right);
 }
 
 template<typename T>
