@@ -21,10 +21,14 @@ int main(){
     tree.insert(15);
     tree.insert(16);
     tree.print();
-    cout << "***********" << endl;
+    cout << "Inverting tree" << endl;
     tree.invert();
     tree.print();
     cout << "Tree Height: " << tree.getHeight() << endl;
     cout << "Is tree balanced: " << tree.isBalanced() << endl;
+    cout << "Is 2 in tree: " << tree.search(2) << endl;
+    cout << "Is 7 in tree: " << tree.search(7) << endl;
+    cout << "Is 17 in tree: " << tree.search(17) << endl;
+    cout << "Is 5 in tree: " << tree.search(5) << endl;
     return 0;
 }

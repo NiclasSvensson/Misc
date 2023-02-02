@@ -15,7 +15,6 @@ BinaryTree<T>::BinaryTree(){
 template<typename T>
 BinaryTree<T>::~BinaryTree(){
     if (root != NULL) {
-        //cout << root->data << endl;
         if (root->left != NULL) deleteNode(root->left);
         if (root->right != NULL) deleteNode(root->right);
         delete root;
@@ -24,7 +23,6 @@ BinaryTree<T>::~BinaryTree(){
 
 template<typename T>
 void BinaryTree<T>::deleteNode(Node<T>* node){
-    //cout << node->data << endl;
     if (node->left != NULL) deleteNode(node->left);
     if (node->right != NULL) deleteNode(node->right);
     delete node;
@@ -111,6 +109,25 @@ void BinaryTree<T>::invert(Node<T>* node){
     node -> right = temp;
     invert(node->left);
     invert(node->right);
+}
+
+
+template<typename T>
+bool BinaryTree<T>::search(T value){
+    if (root == NULL) return false;
+    if (root -> data == value) return true;
+    if (search(root -> left, value)) return true;
+    if (search(root -> right, value)) return true;
+    return false;
+}
+
+template<typename T>
+bool BinaryTree<T>::search(Node<T>* node, T value){
+    if (node == NULL) return false;
+    if (node -> data == value) return true;
+    if (search(node -> left, value)) return true;
+    if (search(node -> right, value)) return true;
+    return false;
 }
 
 template<typename T>

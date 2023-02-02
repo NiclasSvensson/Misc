@@ -17,6 +17,8 @@ class BinaryTree {
         int getHeightOfNode(Node<T>* node);
         void invert();
         void invert(Node<T>* node);
+        bool search(T value);
+        bool search(Node<T>* node, T value);
         void print();
         void print(Node<T>* node, int level);
 };
