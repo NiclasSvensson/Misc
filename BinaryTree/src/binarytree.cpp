@@ -115,19 +115,17 @@ void BinaryTree<T>::invert(Node<T>* node){
 template<typename T>
 bool BinaryTree<T>::search(T value){
     if (root == NULL) return false;
-    if (root -> data == value) return true;
-    if (search(root -> left, value)) return true;
-    if (search(root -> right, value)) return true;
-    return false;
+    else if (root -> data == value) return true;
+    else if (root -> data < value) return search(root -> left, value);
+    else return search(root -> right, value);
 }
 
 template<typename T>
 bool BinaryTree<T>::search(Node<T>* node, T value){
     if (node == NULL) return false;
-    if (node -> data == value) return true;
-    if (search(node -> left, value)) return true;
-    if (search(node -> right, value)) return true;
-    return false;
+    else if (node -> data == value) return true;
+    else if (node -> data < value) return search(node -> left, value);
+    else return search(node -> right, value);
 }
 
 template<typename T>

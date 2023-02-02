@@ -1,12 +1,14 @@
 #include <iostream>
 
 #include "binarytree.h"
+#include "avltree.h"
 
 using namespace std;
 
 int main(){
     cout << "Binary Tree" << endl;
     BinaryTree<int> tree;
+    //AVLTree<int> tree;
     tree.insert(5);
     tree.insert(3);
     tree.insert(1);
@@ -20,6 +22,7 @@ int main(){
     tree.insert(0);
     tree.insert(15);
     tree.insert(16);
+
     tree.print();
     cout << "Inverting tree" << endl;
     tree.invert();

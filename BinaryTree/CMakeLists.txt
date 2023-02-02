@@ -4,6 +4,7 @@ project(BinaryTree)
 set(SOURCES
     src/main.cpp
     src/binarytree.cpp
+    src/avltree.cpp
 )
 
 add_executable(app ${SOURCES})

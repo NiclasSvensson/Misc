@@ -1,8 +1,11 @@
+#ifndef BINARYTREE
+#define BINARYTREE
+
 #include "node.h"
 
 template<typename T>
 class BinaryTree {
-    private:
+    protected:
         Node<T>* root;
         Node<T>* temp;
     public:
@@ -22,3 +25,5 @@ class BinaryTree {
         void print();
         void print(Node<T>* node, int level);
 };
+
+#endif
