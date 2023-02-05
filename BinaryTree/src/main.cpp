@@ -6,9 +6,8 @@
 using namespace std;
 
 int main(){
-    cout << "Binary Tree" << endl;
-    BinaryTree<int> tree;
-    //AVLTree<int> tree;
+    //BinaryTree<int> tree;
+    AVLTree<int> tree;
     tree.insert(5);
     tree.insert(3);
     tree.insert(1);
@@ -22,10 +21,11 @@ int main(){
     tree.insert(0);
     tree.insert(15);
     tree.insert(16);
-
-    tree.print();
-    cout << "Inverting tree" << endl;
-    tree.invert();
+    tree.insert(8);
+    tree.insert(9);
+    tree.insert(17);
+    tree.insert(108);
+    tree.insert(-1);
     tree.print();
     cout << "Tree Height: " << tree.getHeight() << endl;
     cout << "Is tree balanced: " << tree.isBalanced() << endl;
@@ -33,5 +33,6 @@ int main(){
     cout << "Is 7 in tree: " << tree.search(7) << endl;
     cout << "Is 17 in tree: " << tree.search(17) << endl;
     cout << "Is 5 in tree: " << tree.search(5) << endl;
+    cout << "Is 15 in tree: " << tree.search(15) << endl;
     return 0;
 }

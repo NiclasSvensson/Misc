@@ -5,25 +5,28 @@
 
 template<typename T>
 class BinaryTree {
+    private:
+        Node<T> *temp;
+        Node<T>* insert(Node<T> *node, T data);
     protected:
-        Node<T>* root;
-        Node<T>* temp;
+        Node<T> *root;
+        bool isBalanced(Node<T> *node);
+        int getBalance(Node<T> *node);
+        int getHeightOfNode(Node<T> *node);
+        void invert(Node<T> *node);
+        bool search(Node<T> *node, T value);
+        void print(Node<T> *node, int level);
+        void deleteNode(Node<T> *node);
     public:
         BinaryTree();
         ~BinaryTree();
-        void deleteNode(Node<T>* node);
-        void insert(int data);
-        void insert(Node<T>* node, int data);
+        void insert(T data);
         bool isBalanced();
-        bool isBalanced(Node<T>* node);
+        int getBalance();
         int getHeight();
-        int getHeightOfNode(Node<T>* node);
         void invert();
-        void invert(Node<T>* node);
         bool search(T value);
-        bool search(Node<T>* node, T value);
         void print();
-        void print(Node<T>* node, int level);
 };
 
 #endif

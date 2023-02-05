@@ -22,46 +22,25 @@ BinaryTree<T>::~BinaryTree(){
 }
 
 template<typename T>
-void BinaryTree<T>::deleteNode(Node<T>* node){
+void BinaryTree<T>::deleteNode(Node<T> *node){
     if (node->left != NULL) deleteNode(node->left);
     if (node->right != NULL) deleteNode(node->right);
     delete node;
 }
 
 template<typename T>
-void BinaryTree<T>::insert(int data){
-    if (root == NULL){
-        root = new Node<T>{data, NULL, NULL};
-    } else if (root->data >= data){
-        if(root->left == NULL){
-            root->left = new Node<T>{data, NULL, NULL};
-        } else {
-            insert(root->left, data);
-        }
-    } else {
-        if(root->right == NULL){
-            root->right = new Node<T>{data, NULL, NULL};
-        } else {
-            insert(root->right, data);
-        }
-    }
+void BinaryTree<T>::insert(T data){
+    if (root == NULL) root = new Node<T>{data, NULL, NULL};
+    if (data < root->data) root->left = insert(root->left, data);
+    else if (data > root->data) root->right = insert(root->right, data);
 }
 
 template<typename T>
-void BinaryTree<T>::insert(Node<T>* node, int data){
-    if (node->data >= data){
-        if(node->left == NULL){
-            node->left = new Node<T>{data, NULL, NULL};
-        } else {
-            insert(node->left, data);
-        }
-    } else {
-        if(node->right == NULL){
-            node->right = new Node<T>{data, NULL, NULL};
-        } else {
-            insert(node->right, data);
-        }
-    }
+Node<T>* BinaryTree<T>::insert(Node<T> *node, T data){
+    if (node == NULL) return new Node<T>{data, NULL, NULL};
+    if (data < node->data) node->left = insert(node->left, data);
+    else if (data > node->data) node->right = insert(node->right, data);
+    return node;
 }
 
 template<typename T>
@@ -73,11 +52,23 @@ bool BinaryTree<T>::isBalanced(){
 }
 
 template<typename T>
-bool BinaryTree<T>::isBalanced(Node<T>* node){
+bool BinaryTree<T>::isBalanced(Node<T> *node){
     if (node == NULL) return true;
     if (abs(getHeightOfNode(node->left) - getHeightOfNode(node->right)) <= 1 &&
         isBalanced(node->left) && isBalanced(node->right)) return true;
     return false;
+}
+
+template<typename T>
+int BinaryTree<T>::getBalance(){
+    if (root == NULL) return 0;
+    return getHeightOfNode(root->left) - getHeightOfNode(root->right);
+}
+
+template<typename T>
+int BinaryTree<T>::getBalance(Node<T> *node){
+    if (node == NULL) return 0;
+    return getHeightOfNode(node->left) - getHeightOfNode(node->right);
 }
 
 template<typename T>
@@ -86,7 +77,7 @@ int BinaryTree<T>::getHeight(){
 }
 
 template<typename T>
-int BinaryTree<T>::getHeightOfNode(Node<T>* node){
+int BinaryTree<T>::getHeightOfNode(Node<T> *node){
     if (node == NULL) return 0;
     return max(getHeightOfNode(node -> left), getHeightOfNode(node -> right)) + 1;
 }
@@ -102,7 +93,7 @@ void BinaryTree<T>::invert(){
 }
 
 template<typename T>
-void BinaryTree<T>::invert(Node<T>* node){
+void BinaryTree<T>::invert(Node<T> *node){
     if (node == NULL) return;
     temp = node -> left;
     node -> left = node -> right;
@@ -116,16 +107,16 @@ template<typename T>
 bool BinaryTree<T>::search(T value){
     if (root == NULL) return false;
     else if (root -> data == value) return true;
-    else if (root -> data < value) return search(root -> left, value);
-    else return search(root -> right, value);
+    else if (root -> data < value) return search(root -> right, value);
+    else return search(root -> left, value);
 }
 
 template<typename T>
-bool BinaryTree<T>::search(Node<T>* node, T value){
+bool BinaryTree<T>::search(Node<T> *node, T value){
     if (node == NULL) return false;
     else if (node -> data == value) return true;
-    else if (node -> data < value) return search(node -> left, value);
-    else return search(node -> right, value);
+    else if (node -> data < value) return search(node -> right, value);
+    else return search(node -> left, value);
 }
 
 template<typename T>
@@ -137,7 +128,7 @@ void BinaryTree<T>::print(){
 }
 
 template<typename T>
-void BinaryTree<T>::print(Node<T>* node, int level){
+void BinaryTree<T>::print(Node<T> *node, int level){
     if (node == NULL) return;
     cout << string(level, '-') << node->data << endl;
     if (node->left != NULL) print(node->left, level + 1);

@@ -1,14 +1,16 @@
 #ifndef AVLTREE
 #define AVLTREE
 
-//#include "node.h"
 #include "binarytree.h"
 
 template<typename T>
 class AVLTree : public BinaryTree<T> {
+    private:
+        Node<T>* rotateLeft(Node<T> *node);
+        Node<T>* rotateRight(Node<T> *node);
+        Node<T>* insert(Node<T> *node, T data);
     public:
-        void insert(int data);
-        void insert(Node<T>* node, int data);
+        void insert(T data);
 };
 
 #endif
