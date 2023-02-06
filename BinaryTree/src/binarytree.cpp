@@ -14,11 +14,7 @@ BinaryTree<T>::BinaryTree(){
 
 template<typename T>
 BinaryTree<T>::~BinaryTree(){
-    if (root != NULL) {
-        if (root->left != NULL) deleteNode(root->left);
-        if (root->right != NULL) deleteNode(root->right);
-        delete root;
-    }
+    deleteNode(root);
 }
 
 template<typename T>

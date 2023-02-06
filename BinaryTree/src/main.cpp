@@ -25,7 +25,7 @@ int main(){
     tree.insert(9);
     tree.insert(17);
     tree.insert(108);
-    tree.insert(-1);
+    tree.insert(19);
     tree.print();
     tree.invert();
     tree.print();
