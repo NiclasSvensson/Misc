@@ -27,6 +27,9 @@ int main(){
     tree.insert(108);
     tree.insert(-1);
     tree.print();
+    tree.invert();
+    tree.print();
+    tree.invert();
     cout << "Tree Height: " << tree.getHeight() << endl;
     cout << "Is tree balanced: " << tree.isBalanced() << endl;
     cout << "Is 2 in tree: " << tree.search(2) << endl;

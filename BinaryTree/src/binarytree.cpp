@@ -30,9 +30,7 @@ void BinaryTree<T>::deleteNode(Node<T> *node){
 
 template<typename T>
 void BinaryTree<T>::insert(T data){
-    if (root == NULL) root = new Node<T>{data, NULL, NULL};
-    if (data < root->data) root->left = insert(root->left, data);
-    else if (data > root->data) root->right = insert(root->right, data);
+    insert(root, data);
 }
 
 template<typename T>
@@ -45,10 +43,7 @@ Node<T>* BinaryTree<T>::insert(Node<T> *node, T data){
 
 template<typename T>
 bool BinaryTree<T>::isBalanced(){
-    if (root == NULL) return true;
-    if (abs(getHeightOfNode(root->left) - getHeightOfNode(root->right)) <= 1 &&
-        isBalanced(root->left) && isBalanced(root->right)) return true;
-    return false;
+    return isBalanced(root);
 }
 
 template<typename T>
@@ -61,8 +56,7 @@ bool BinaryTree<T>::isBalanced(Node<T> *node){
 
 template<typename T>
 int BinaryTree<T>::getBalance(){
-    if (root == NULL) return 0;
-    return getHeightOfNode(root->left) - getHeightOfNode(root->right);
+    return getBalance(root);
 }
 
 template<typename T>
@@ -84,12 +78,7 @@ int BinaryTree<T>::getHeightOfNode(Node<T> *node){
 
 template<typename T>
 void BinaryTree<T>::invert(){
-    if (root == NULL) return;
-    temp = root -> left;
-    root -> left = root -> right;
-    root -> right = temp;
-    invert(root->left);
-    invert(root->right);
+    invert(root);
 }
 
 template<typename T>
@@ -105,10 +94,7 @@ void BinaryTree<T>::invert(Node<T> *node){
 
 template<typename T>
 bool BinaryTree<T>::search(T value){
-    if (root == NULL) return false;
-    else if (root -> data == value) return true;
-    else if (root -> data < value) return search(root -> right, value);
-    else return search(root -> left, value);
+    return search(root, value);
 }
 
 template<typename T>
@@ -121,10 +107,7 @@ bool BinaryTree<T>::search(Node<T> *node, T value){
 
 template<typename T>
 void BinaryTree<T>::print(){
-    if (root == NULL) return;
-    cout << root->data << endl;
-    print(root->left, 1);
-    print(root->right, 1);
+    print(root, 0);
 }
 
 template<typename T>
